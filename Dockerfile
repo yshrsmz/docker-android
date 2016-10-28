@@ -1,32 +1,52 @@
-# based on https://registry.hub.docker.com/u/samtstern/android-sdk/dockerfile/ with openjdk-8
-FROM java:8
+FROM openjdk:8-jdk
+
+# https://github.com/bitrise-docker/android/blob/master/Dockerfile
+# https://github.com/bitrise-steplib/steps-start-android-emulator/blob/master/step.rb
 
 MAINTAINER Shimizu Yasuhiro <the.phantom.bane+github@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Install dependencies
 RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-        apt-get install -yq libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 --no-install-recommends && \
-            apt-get clean
+    apt-get update -qq && \
+    apt-get install -yq git curl wget rsync sudo expect zip unzip file build-essential libc6:i386 libstdc++6:i386 libgcc1:i386 libncurses5:i386 libz1:i386 && \
+    apt-get clean
 
 # Download and untar SDK
-ENV ANDROID_SDK_URL http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
-RUN curl -L "${ANDROID_SDK_URL}" | tar --no-same-owner -xz -C /usr/local
-ENV ANDROID_HOME /usr/local/android-sdk-linux
-ENV ANDROID_SDK /usr/local/android-sdk-linux
-ENV PATH ${ANDROID_HOME}/tools:$ANDROID_HOME/platform-tools:$PATH
+ENV ANDROID_HOME /opt/android-sdk-linux
+RUN cd /opt && wget -q https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -O /opt/android-sdk.tgz ; \
+    tar -xvzf android-sdk.tgz ; \
+    rm -f android-sdk.tgz
 
-# Install Android SDK components
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
-# License Id: android-sdk-license-ed0d0a5b
-ENV ANDROID_COMPONENTS platform-tools,build-tools-24.0.2,android-24
-# License Id: android-sdk-license-5be876d5
-ENV GOOGLE_COMPONENTS extra-android-m2repository,extra-google-m2repository
+# ------------------------------------------------------
+# --- Install Android SDKs and other build packages
 
-RUN echo y | android update sdk --no-ui --all --filter "${ANDROID_COMPONENTS}" ; \
-    echo y | android update sdk --no-ui --all --filter "${GOOGLE_COMPONENTS}"
+# Other tools and resources of Android SDK
+#  you should only install the packages you need!
+# To get a full list of available options you can use:
+#  android list sdk --no-ui --all --extended
+# (!!!) Only install one package at a time, as "echo y" will only work for one license!
+#       If you don't do it this way you might get "Unknown response" in the logs,
+#         but the android SDK tool **won't** fail, it'll just **NOT** install the package.
+RUN echo y | android update sdk --no-ui --all --filter platform-tools | grep 'package installed'
+
+# SDKs
+# Please keep these in descending order!
+RUN echo y | android update sdk --no-ui --all --filter android-24 | grep 'package installed'
+
+# build tools
+# Please keep these in descending order!
+RUN echo y | android update sdk --no-ui --all --filter build-tools-24.0.3 | grep 'package installed'
+
+# Extras
+RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
+
+# google apis
+# Please keep these in descending order!
+RUN echo y | android update sdk --no-ui --all --filter addon-google_apis-google-24 | grep 'package installed'
 
 # Support Gradle
 ENV TERM dumb
