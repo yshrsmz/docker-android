@@ -44,9 +44,5 @@ RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.0 | grep
 RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
 RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
 
-# google apis
-# Please keep these in descending order!
-RUN echo y | android update sdk --no-ui --all --filter addon-google_apis-google-24 | grep 'package installed'
-
 # Support Gradle
 ENV TERM dumb
