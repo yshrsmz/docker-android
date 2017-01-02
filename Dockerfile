@@ -12,7 +12,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -yq git curl wget rsync sudo expect zip unzip file build-essential libc6:i386 libstdc++6:i386 libgcc1:i386 libncurses5:i386 libz1:i386 && \
     apt-get clean
 
-RUN mkdir /opt/bin && curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.2/reviewdog_linux_amd64 -o /opt/bin/reviewdog && chmod 777 /opt/bin/reviewdog
+RUN mkdir /opt/bin && curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.4/reviewdog_linux_amd64 -o /opt/bin/reviewdog && chmod 777 /opt/bin/reviewdog
 
 # Download and unzip SDK
 ENV ANDROID_HOME /opt/android-sdk-linux
