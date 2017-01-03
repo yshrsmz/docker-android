@@ -1,0 +1,5 @@
+platform-tools
+build-tools;25.0.2
+platforms;android-25
+extras;android;m2repository
+extras;google;m2repository
