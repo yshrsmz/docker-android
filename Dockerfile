@@ -28,7 +28,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get clean
 
 RUN mkdir /opt/bin && \
-      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.4/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
+      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.6/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
       chmod 777 /opt/bin/reviewdog
 
 # Download and unzip SDK
