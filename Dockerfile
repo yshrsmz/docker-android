@@ -28,14 +28,14 @@ RUN dpkg --add-architecture i386 && \
     apt-get clean
 
 RUN mkdir /opt/bin && \
-      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.4/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
+      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.6/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
       chmod 777 /opt/bin/reviewdog
 
 # Download and unzip SDK
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN mkdir /opt/android-sdk-linux && \
       cd /opt/android-sdk-linux && \
-      wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O /opt/android-sdk-linux/tools.zip && \
+      wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /opt/android-sdk-linux/tools.zip && \
     unzip tools.zip && \
     rm -f tools.zip
 
