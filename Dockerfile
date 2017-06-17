@@ -35,7 +35,7 @@ RUN mkdir /opt/bin && \
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN mkdir /opt/android-sdk-linux && \
       cd /opt/android-sdk-linux && \
-      wget -q https://dl.google.com/android/repository/tools_r25.2.5-linux.zip -O /opt/android-sdk-linux/tools.zip && \
+      wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /opt/android-sdk-linux/tools.zip && \
     unzip tools.zip && \
     rm -f tools.zip
 
