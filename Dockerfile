@@ -46,7 +46,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 RUN echo y | sdkmanager  \
       "platform-tools" \
       "build-tools;25.0.3" \
-      "platforms;android-25" \
+      "platforms;android-26" \
       "extras;android;m2repository" \
       "extras;google;m2repository"
 
