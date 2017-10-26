@@ -28,7 +28,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get clean
 
 RUN mkdir /opt/bin && \
-      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.6/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
+      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.8/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
       chmod 777 /opt/bin/reviewdog
 
 # Download and unzip SDK
@@ -45,8 +45,8 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 # --- Install Android SDKs and other build packages
 RUN echo y | sdkmanager  \
       "platform-tools" \
-      "build-tools;26.0.2" \
-      "platforms;android-26" \
+      "build-tools;27.0.0" \
+      "platforms;android-27" \
       "extras;android;m2repository" \
       "extras;google;m2repository"
 
