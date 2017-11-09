@@ -3,7 +3,7 @@ FROM openjdk:8-jdk
 # https://github.com/bitrise-docker/android/blob/master/Dockerfile
 # https://github.com/bitrise-steplib/steps-start-android-emulator/blob/master/step.rb
 
-MAINTAINER Shimizu Yasuhiro <the.phantom.bane+github@gmail.com>
+LABEL maintainer "Shimizu Yasuhiro <the.phantom.bane+github@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
