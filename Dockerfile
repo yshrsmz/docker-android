@@ -45,7 +45,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 # --- Install Android SDKs and other build packages
 RUN echo y | sdkmanager  \
       "platform-tools" \
-      "build-tools;27.0.2" \
+      "build-tools;27.0.3" \
       "platforms;android-27" \
       "extras;android;m2repository" \
       "extras;google;m2repository"
