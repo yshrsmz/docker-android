@@ -27,10 +27,6 @@ RUN dpkg --add-architecture i386 && \
       libz1:i386 && \
     apt-get clean
 
-RUN mkdir /opt/bin && \
-      curl -L https://github.com/haya14busa/reviewdog/releases/download/0.9.8/reviewdog_linux_amd64 -o /opt/bin/reviewdog && \
-      chmod 777 /opt/bin/reviewdog
-
 # Download and unzip SDK
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN mkdir /opt/android-sdk-linux && \
@@ -45,10 +41,8 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 # --- Install Android SDKs and other build packages
 RUN echo y | sdkmanager  \
       "platform-tools" \
-      "build-tools;27.0.3" \
-      "platforms;android-27" \
-      "extras;android;m2repository" \
-      "extras;google;m2repository"
+      "build-tools;28.0.1-rc1" \
+      "platforms;android-P"
 
 # Support Gradle
 ENV TERM dumb
