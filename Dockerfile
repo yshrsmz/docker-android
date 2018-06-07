@@ -41,8 +41,8 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 # --- Install Android SDKs and other build packages
 RUN echo y | sdkmanager  \
       "platform-tools" \
-      "build-tools;28.0.0-rc2" \
-      "platforms;android-P"
+      "build-tools;28.0.0" \
+      "platforms;android-28"
 
 # Support Gradle
 ENV TERM dumb
