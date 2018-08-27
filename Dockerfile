@@ -31,7 +31,7 @@ RUN dpkg --add-architecture i386 && \
 ENV ANDROID_HOME /opt/android-sdk-linux
 RUN mkdir /opt/android-sdk-linux && \
       cd /opt/android-sdk-linux && \
-      wget -q https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /opt/android-sdk-linux/tools.zip && \
+      wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O /opt/android-sdk-linux/tools.zip && \
     unzip tools.zip && \
     rm -f tools.zip
 
@@ -41,7 +41,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}
 # --- Install Android SDKs and other build packages
 RUN echo y | sdkmanager  \
       "platform-tools" \
-      "build-tools;28.0.0" \
+      "build-tools;28.0.2" \
       "platforms;android-28"
 
 # Support Gradle
